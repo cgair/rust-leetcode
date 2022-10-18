@@ -15,8 +15,31 @@
  */
 
 // problem: https://leetcode.cn/problems/linked-list-cycle/
-#include <data_structure.h>
+#include "data_structure.h"
+#include <stdio.h>
 
+// 任意时刻, fast 指针走过的距离都为 slow 指针的 2 倍.
 struct ListNode *detectCycle(struct ListNode *head) {
+    struct ListNode *slow = head, *fast = head;
+    while (fast != NULL) {
+        if (fast->next == NULL) {
+            return NULL;
+        }
+        slow = slow->next;
+        fast = fast->next->next;
+        if (fast == slow) {
+            struct ListNode *ptr = head;
+            while (ptr != slow) {
+                ptr = ptr->next;
+                slow = slow->next;
+            }
+            return ptr;   
+        }
+    }
     
+    return NULL;
+}
+
+int main() {
+
 }

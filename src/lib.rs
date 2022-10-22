@@ -28,6 +28,7 @@ mod s0203_remove_linked_list_elements;
 mod s0111_minimum_depth_of_binary_tree;
 
 mod s0142_linked_list_cycle_II;
+mod s0083_remove_duplicates_from_sorted_list;
 
 #[allow(non_snake_case)]
 mod sword_refers_to_offer_II;

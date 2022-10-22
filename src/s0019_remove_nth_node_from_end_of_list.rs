@@ -22,7 +22,7 @@
  */
 
 // problem: https://leetcode.cn/problems/remove-nth-node-from-end-of-list/
-use crate::ListNode;
+use crate::{ListNode, to_list};
 
 pub struct Solution;
 
@@ -39,19 +39,50 @@ impl Solution {
         }
 
         let idx = len - n;
-        let mut p = dummy_head.as_mut();
+        // let mut p = dummy_head.as_mut();
 
+        // for _ in 0..idx {
+        //     p = p.unwrap().next.as_mut();
+        // }
+        // let next = p.as_mut().unwrap().next.as_mut().unwrap().next.take();
+        // p.unwrap().next = next;
+        let mut p = dummy_head.as_mut().unwrap();
         for _ in 0..idx {
+            p = p.next.as_mut().unwrap();
+        }
+        let next = p.next.as_mut().unwrap().next.take();
+        p.next = next;
+        
+        dummy_head.unwrap().next
+    }
+
+    pub fn remove_nth_from_end2(mut head: Option<Box<ListNode>>, n: i32) -> Option<Box<ListNode>> {
+        let mut length = 0i32;
+        {
+            let mut curr = head.as_ref();
+            while !curr.is_none() {
+                length += 1;
+                curr = curr.unwrap().next.as_ref();
+            }
+        }
+        let mut pos = length - n;
+        if pos == 0 {
+            return head.unwrap().next;
+        }
+        let mut p = head.as_mut();
+        for _ in 0..pos - 1 {
             p = p.unwrap().next.as_mut();
+            println!("{:?}", p);
         }
         let next = p.as_mut().unwrap().next.as_mut().unwrap().next.take();
         p.unwrap().next = next;
-        dummy_head.unwrap().next
+
+        head
     }
 }
 
 #[test]
-fn test_19() {
+fn test19() {
     let to_be_removed = Some(Box::new(
         ListNode {
             val: 1,
@@ -109,4 +140,14 @@ fn test_19() {
     ));
     let ret = Solution::remove_nth_from_end(to_be_removed, 2);
     assert_eq!(expected, ret);
+
+    assert_eq!(
+        Solution::remove_nth_from_end(to_list(vec![1,2,3,4,5]), 2),
+        to_list(vec![1,2,3,5])
+    );
+    
+    assert_eq!(
+        Solution::remove_nth_from_end2(to_list(vec![1,2,3,4,5]), 2),
+        to_list(vec![1,2,3,5])
+    );
 }

@@ -1,1 +1,0 @@
-mod s025_add_two_numbers;

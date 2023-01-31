@@ -35,6 +35,9 @@ pub fn selection_sort<T: Ord + Copy>(arr: &mut [T]) {
         arr.swap(i, smallest);
     }
 }
+// 复杂度分析: 第一次内循环比较 N - 1 次， 然后是 N-2 次， N-3 次, ..., 1 次.
+// 共比较的次数是 (N - 1) + (N - 2) + ... + 1, 由等差数列和 (Sn = n * a1 + n(n-1)d / 2 或 Sn = n(a1+an) / 2) 
+// 得 (N - 1 + 1) * N / 2 = N^2 / 2 -> 其时间复杂度为 O(N^2)
 
 // <https://matklad.github.io/2021/05/31/how-to-test.html>
 #[cfg(test)]

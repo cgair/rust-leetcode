@@ -2,14 +2,14 @@ use std::boxed::Box;
 
 // Definition for singly-linked list.
 #[derive(PartialEq, Eq, Clone, Debug)]
-pub struct ListNode {
-    pub val: i32,
-    pub next: Option<Box<ListNode>>
+pub struct ListNode<T> {
+    pub val: T,
+    pub next: Option<Box<ListNode<T>>>
 }
 
-impl ListNode {
+impl<T> ListNode<T> {
     #[inline]
-    pub fn new(val: i32) -> Self {
+    pub fn new(val: T) -> Self {
         ListNode {
             val,
             next: None

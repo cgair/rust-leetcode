@@ -27,7 +27,7 @@ use crate::{ListNode, to_list};
 pub struct Solution;
 
 impl Solution {
-    pub fn remove_nth_from_end(head: Option<Box<ListNode>>, n: i32) -> Option<Box<ListNode>> {
+    pub fn remove_nth_from_end(head: Option<Box<ListNode<i32>>>, n: i32) -> Option<Box<ListNode<i32>>> {
         let mut dummy_head = Some(Box::new(ListNode { val: 0, next: head } ));
         let mut len = 0;
         {
@@ -56,7 +56,7 @@ impl Solution {
         dummy_head.unwrap().next
     }
 
-    pub fn remove_nth_from_end2(mut head: Option<Box<ListNode>>, n: i32) -> Option<Box<ListNode>> {
+    pub fn remove_nth_from_end2(mut head: Option<Box<ListNode<i32>>>, n: i32) -> Option<Box<ListNode<i32>>> {
         let mut length = 0i32;
         {
             let mut curr = head.as_ref();

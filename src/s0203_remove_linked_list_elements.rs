@@ -16,7 +16,7 @@ use crate::{to_list, ListNode};
 pub struct Solution;
 
 impl Solution {
-    pub fn remove_elements(head: Option<Box<ListNode>>, val: i32) -> Option<Box<ListNode>> {
+    pub fn remove_elements(head: Option<Box<ListNode<i32>>>, val: i32) -> Option<Box<ListNode<i32>>> {
         if !head.is_some() {
             return None;
         }

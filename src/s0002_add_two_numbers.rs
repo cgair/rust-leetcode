@@ -20,7 +20,7 @@ use crate::data_structure::ListNode;
 pub struct Solution {}
 
 impl Solution {
-    pub fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+    pub fn add_two_numbers(l1: Option<Box<ListNode<i32>>>, l2: Option<Box<ListNode<i32>>>) -> Option<Box<ListNode<i32>>> {
         let mut dummy_head = Some(Box::new(ListNode::new(0)));
         let mut curr_dumb = &mut dummy_head;
         let mut carry = 0;
@@ -66,7 +66,7 @@ impl Solution {
     }
 
     // Construct a linked list
-    pub fn construct_list(vec: Vec<i32>) -> Option<Box<ListNode>> {
+    pub fn construct_list(vec: Vec<i32>) -> Option<Box<ListNode<i32>>> {
         let mut curr = None;    // construct from
         for &v in vec.iter().rev() {
             let mut new_node = Some(Box::new(ListNode::new(v)));

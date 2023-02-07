@@ -21,7 +21,7 @@ use crate::{ListNode, to_list};
 pub struct Solution;
 
 impl Solution {
-    pub fn middle_node(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+    pub fn middle_node<T: Clone>(head: Option<Box<ListNode<T>>>) -> Option<Box<ListNode<T>>> {
         let mut slow = &head;
         let mut fast = &head;
         while slow.is_some() && fast.is_some() && fast.as_ref().unwrap().next.is_some() {

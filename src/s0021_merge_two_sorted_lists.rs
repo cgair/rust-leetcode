@@ -15,7 +15,7 @@ use crate::ListNode;
 pub struct Solution;
 
 impl Solution {
-    fn merge_two_lists(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+    fn merge_two_lists(l1: Option<Box<ListNode<i32>>>, l2: Option<Box<ListNode<i32>>>) -> Option<Box<ListNode<i32>>> {
         let mut dummy_head = Some(Box::new(ListNode::new(0)));
         let mut previous = &mut dummy_head;
         let (mut l1, mut l2) = (l1, l2);

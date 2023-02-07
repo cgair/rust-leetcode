@@ -1,3 +1,4 @@
+#![allow(unused, non_snake_case)]
 mod data_structure;
 mod s0001_two_sum;
 mod s0002_add_two_numbers;
@@ -48,7 +49,7 @@ pub fn fibonacci(n: u64) -> u64 {
 }
 
 // helper function for test
-pub fn to_list(vec: Vec<i32>) -> Option<Box<ListNode>> {
+pub fn to_list<T: Copy>(vec: Vec<T>) -> Option<Box<ListNode<T>>> {
     let mut curr = None;
     for &v in vec.iter().rev() {
         let mut node = ListNode::new(v);

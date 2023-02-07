@@ -20,7 +20,7 @@ use crate::{ListNode, to_list};
 struct Solution;
 
 impl Solution {
-    pub fn detect_cycle(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+    pub fn detect_cycle<T:PartialOrd + Clone>(head: Option<Box<ListNode<T>>>) -> Option<Box<ListNode<T>>> {
         if head.is_none() {
             return None;
         }

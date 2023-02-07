@@ -22,7 +22,7 @@ use crate::{ListNode, to_list};
  pub struct Solution;
 
 impl Solution {
-    pub fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+    pub fn add_two_numbers(l1: Option<Box<ListNode<i32>>>, l2: Option<Box<ListNode<i32>>>) -> Option<Box<ListNode<i32>>> {
         let (mut stack1, mut stack2) = (vec![], vec![]);
         let (mut l1, mut l2) = (l1.as_ref(), l2.as_ref());
         let mut dummy_heaed = Some(Box::new(ListNode::new(0)));

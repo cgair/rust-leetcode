@@ -19,7 +19,7 @@ struct Solution;
 
 impl Solution {
     // 夺走, 校验不过再还回去
-    fn delete_duplicates(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+    fn delete_duplicates(head: Option<Box<ListNode<i32>>>) -> Option<Box<ListNode<i32>>> {
         if head.is_none() {
             return None;
         }

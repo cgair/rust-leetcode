@@ -89,6 +89,55 @@ pub fn insertion_sort<T: PartialOrd> (arr: &mut [T]) {
 // The worst case is ~ N2/2 compares and ~ N2/2 exchanges and the best case is N-1 compares and 0 exchanges.
 
 
+
+// /////////////////////// //
+//        Shellsort        //
+// /////////////////////// //
+// 
+
+/**
+ * 希尔排序 是对 插入排序 的改进
+ * 
+ * 考虑插入排序的一个 worst case:   
+ *     当一个数组的大部分元素是从大到小排列 (e.g. [6, 5, 4, 3, 2, 1]),
+ *     用插入排序来从小到大排序的话, 效率会被降低 (需要做很多次 swap).
+ * 
+ * 希尔排序就是按照一定的 gap 值, 不断地对数组进行插入排序.
+ * 不一样的希尔排序算法可能采用不一样的 gap 值.
+ * 经典希尔算法的 gap 值为 N/2, N/4, ..., 1, 其中 N 为数组的长度.
+ * 
+ * Example
+ * [61, 109, 149, 111, 34, 2, 24, 119, 122, 27], N = 10
+ * Round 1: Gap = N/2 = 5, 数组被分为 -> [61, 2]、[109, 24]、[149, 119]、[111, 122]、[34, 27],
+ *          对他们进行插入排序 -> [2, 61]、[24, 109]、[119, 149]、[111, 122]、[27, 34].
+ *          原数组变成 [2, 24, 119, 111, 27, 61, 109, 149, 122, 34].
+ * Round 1: Gap = N/4 = Gap/2 = 2, 数组被分为 -> [2, 119, 27, 109, 122]、[24, 111, 61, 149, 34],
+ *          对他们进行插入排序 -> [2, 27, 109, 119, 122]、[24, 34, 61, 111, 149]
+ *          原数组变成 -> [2, 24, 27, 34, 109, 61, 119, 111, 122, 149]
+ * Round 3: Gap = 1, 对 [2, 24, 27, 34, 109, 61, 119, 111, 122, 149] 进行插入排序
+ * 
+ * 上边的例子形式上尽管每个 Round 看似分成了多组数组, 实际上还是对 数组索引 (index) 位置上的元素操作.
+ * 
+ */
+
+
+/// Sorts a slice in-place using
+/// [shell sort](https://en.wikipedia.org/wiki/Shellsort)
+/// 
+pub fn shell_sort<T: PartialOrd>(arr: &mut [T]) {
+    let len = arr.len();
+    let mut gap = len / 2;
+    while gap < 1 {
+        for i in 0..gap {
+            if arr[i] > arr[i + gap] {
+                arr.swap(i, i + gap);
+            }
+        }
+
+        gap = gap / 2;
+    }
+}
+
 // <https://matklad.github.io/2021/05/31/how-to-test.html>
 #[cfg(test)]
 mod tests {
@@ -125,5 +174,13 @@ mod tests {
         insertion_sort(&mut strings);
         println!("After:  {:?}\n", strings);
         assert_eq!(strings, ["airplane", "art", "beach", "car", "hotel", "house"]);
+    }
+
+    #[test]
+    fn test_shell_sort() {
+        
+        for i in (0..10).step_by(5) {
+            print!("{} ", i);
+        }
     }
 }

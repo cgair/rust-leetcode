@@ -1,0 +1,8 @@
+[workspace]
+
+members = [
+    "Chapter1-fundamentals",
+    "Chapter2-sorting",
+    "Chapter3-searching",
+    "Chapter4-graph",
+]

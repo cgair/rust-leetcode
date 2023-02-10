@@ -19,21 +19,21 @@ impl<T> ListNode<T> {
 
 use std::rc::Rc;
 use std::cell::RefCell;
-/// Definition for a binary tree node.
-#[derive(Debug, PartialEq, Eq, Clone)]
-pub struct TreeNode {
-    pub val: i32,
-    pub left: Option<Rc<RefCell<TreeNode>>>,
-    pub right: Option<Rc<RefCell<TreeNode>>>
+// Definition for a binary tree node.
+#[derive(PartialEq, Eq, Clone, Debug)]
+pub struct TreeNode<T> {
+    pub val: T,
+    pub left: Option<Rc<RefCell<TreeNode<T>>>>,
+    pub right: Option<Rc<RefCell<TreeNode<T>>>>,
 }
 
-impl TreeNode {
-  #[inline]
-  pub fn new(val: i32) -> Self {
-    TreeNode {
-      val,
-      left: None,
-      right: None
+impl<T> TreeNode<T> {
+    #[inline]
+    pub fn new(val: T) -> Self {
+        TreeNode {
+            val,
+            left: None,
+            right: None
+        }
     }
-  }
 }

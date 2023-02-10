@@ -62,7 +62,7 @@ pub fn to_list<T: Copy>(vec: Vec<T>) -> Option<Box<ListNode<T>>> {
 use std::rc::Rc;
 use std::cell::RefCell;
 use std::collections::VecDeque;
-pub fn to_tree(vec: Vec<Option<i32>>) -> Option<Rc<RefCell<TreeNode>>> {
+pub fn to_tree(vec: Vec<Option<i32>>) -> Option<Rc<RefCell<TreeNode<i32>>>> {
     let head = Some(Rc::new(RefCell::new(TreeNode::new(vec[0].unwrap()))));
     let mut queue = VecDeque::new();
     queue.push_back(head.as_ref().unwrap().clone());

@@ -31,7 +31,7 @@ use std::collections::VecDeque;
 pub struct Solution;
 
 impl Solution {
-    pub fn min_depth(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
+    pub fn min_depth(root: Option<Rc<RefCell<TreeNode<i32>>>>) -> i32 {
         if !root.is_some() {
             return 0;
         }

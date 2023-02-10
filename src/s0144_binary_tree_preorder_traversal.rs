@@ -29,7 +29,7 @@ use crate::{TreeNode, tree};
 pub struct Solution;
 
 impl Solution {
-    pub fn preorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+    pub fn preorder_traversal(root: Option<Rc<RefCell<TreeNode<i32>>>>) -> Vec<i32> {
         if !root.is_some() {
             return vec![];
         }
@@ -57,7 +57,7 @@ impl Solution {
     }
 
     // recursive
-    pub fn hepler(root: Option<Rc<RefCell<TreeNode>>>, ret: &mut Vec<i32>) {
+    pub fn hepler(root: Option<Rc<RefCell<TreeNode<i32>>>>, ret: &mut Vec<i32>) {
         if let Some(n) = root {
             ret.push(n.borrow().val);
             Self::hepler(n.borrow().left.clone(), ret);

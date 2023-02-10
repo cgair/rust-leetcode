@@ -38,7 +38,7 @@ pub struct Solution;
 use std::cell::RefCell;
 use std::rc::Rc;
 impl Solution {
-    pub fn invert_tree(root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
+    pub fn invert_tree(root: Option<Rc<RefCell<TreeNode<i32>>>>) -> Option<Rc<RefCell<TreeNode<i32>>>> {
         if let Some(n) = root.clone() {
             let left = n.borrow_mut().left.take();
             let right = n.borrow_mut().right.take();

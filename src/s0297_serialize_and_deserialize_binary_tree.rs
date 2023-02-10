@@ -29,7 +29,7 @@ impl Codec {
         Self {}
     }
 
-    fn serialize(&self, root: Option<Rc<RefCell<TreeNode>>>) -> String {
+    fn serialize(&self, root: Option<Rc<RefCell<TreeNode<i32>>>>) -> String {
         if !root.is_some() {
             return String::from("");
         }
@@ -54,7 +54,7 @@ impl Codec {
         ret
     }
 	
-    fn deserialize(&self, data: String) -> Option<Rc<RefCell<TreeNode>>> {
+    fn deserialize(&self, data: String) -> Option<Rc<RefCell<TreeNode<i32>>>> {
         if data.is_empty() {
             return None;
         }
@@ -67,7 +67,7 @@ impl Codec {
         root
     }
 
-    fn build_tree(data: &[char], index: &mut usize) -> Option<Rc<RefCell<TreeNode>>> {
+    fn build_tree(data: &[char], index: &mut usize) -> Option<Rc<RefCell<TreeNode<i32>>>> {
         if data[*index].to_string() == NULL {
             *index += 1;
             return None;

@@ -13,3 +13,8 @@ name = "my_benchmark"
 harness = false
 
 [dependencies]
+
+
+[[bin]]
+name = "01knapsack"
+path = "src/0_1_knapsack_problem.rs"

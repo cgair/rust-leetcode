@@ -42,9 +42,11 @@ pub struct MinStack {
 
 impl MinStack {
     pub fn new() -> Self {
-        stack: Vec::new(),
-        min: Vec::new()
-        // min: i32::MAX
+        MinStack {
+            stack: Vec::new(),
+            min: Vec::new()
+            // min: i32::MAX
+        }
     }
 
     pub fn push(&mut self, item: i32) {

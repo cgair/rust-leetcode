@@ -11,7 +11,7 @@
  *
  */
 
-use crate::ListNode; 
+use crate::{ListNode, to_list}; 
 pub struct Solution;
 
 impl Solution {
@@ -59,6 +59,40 @@ impl Solution {
         dummy_head.unwrap().next
     }
 }
+
+
+/// Merge two ordered list.
+///
+/// Both `list1` and `list2` are sorted in ascending order.
+pub fn merge_two_lists<T: Ord>(mut list1: Option<Box<ListNode<T>>>, mut list2: Option<Box<ListNode<T>>>) -> Option<Box<ListNode<T>>> {
+    let mut head = None;
+
+    let mut curr = &mut head;
+    loop {
+        match (list1, list2) {
+            (Some(mut l1), Some(mut l2)) => {
+                if l1.val <= l2.val {
+                    list1 = l1.next.take();
+                    list2 = Some(l2);
+                    curr = &mut curr.insert(l1).next;
+                } else {
+                    list1 = Some(l1);
+                    list2 = l2.next.take();
+                    curr = &mut curr.insert(l2).next;
+                }
+            },
+            // (_, None) => {},
+            // (None, _) => {}
+            (l1, l2) => {
+                *curr = l1.or(l2);
+                break;
+            }
+        }
+    }
+
+    head
+}
+
 
 
 #[test]
@@ -127,4 +161,9 @@ fn test_21() {
     ));
     assert_eq!(ret, expected);
     println!("result: {:?}", ret);
+
+    assert_eq!(
+        merge_two_lists(to_list(vec![1, 2, 4]), to_list(vec![1, 3, 4])),
+        to_list(vec![1, 1, 2, 3, 4, 4])
+    );
 }

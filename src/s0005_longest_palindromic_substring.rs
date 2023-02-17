@@ -70,34 +70,34 @@ struct LongestPalindrome(usize, String);
 
 impl Solution {
     // 超出时间限制
-    // pub fn longest_palindrome(s: String) -> String {
-    //     let len = s.len();
-    //     if len == 0 { return  String::from(""); }
-    //     let mut max = "";
+    pub fn longest_palindrome(s: String) -> String {
+        let len = s.len();
+        if len == 0 { return  String::from(""); }
+        let mut max = "";
         
-    //     for i in 0.. {
-    //         let mut lo = i;
-    //         let mut hi = len - 1;
-    //         while lo < hi {
-    //             if s[lo..=hi] == s[lo..=hi].chars().rev().collect::<String>() {
-    //                 max = &s[lo..=hi];
-    //                 break;
-    //             }
-    //             lo += 1;
-    //         }
-    //         lo = i;
-    //         while lo < hi {
-    //             if s[lo..=hi] == s[lo..=hi].chars().rev().collect::<String>() && hi - lo + 1 > max.len(){
-    //                 max = &s[lo..=hi];
-    //                 break;
-    //             }
-    //             hi -= 1;
-    //         }
-    //         if max.len() > 0 { break; }
-    //     }
+        for i in 0.. {
+            let mut lo = i;
+            let mut hi = len - 1;
+            while lo < hi {
+                if s[lo..=hi] == s[lo..=hi].chars().rev().collect::<String>() {
+                    max = &s[lo..=hi];
+                    break;
+                }
+                lo += 1;
+            }
+            lo = i;
+            while lo < hi {
+                if s[lo..=hi] == s[lo..=hi].chars().rev().collect::<String>() && hi - lo + 1 > max.len(){
+                    max = &s[lo..=hi];
+                    break;
+                }
+                hi -= 1;
+            }
+            if max.len() > 0 { break; }
+        }
 
-    //     max.to_string()
-    // }
+        max.to_string()
+    }
     
 }
 

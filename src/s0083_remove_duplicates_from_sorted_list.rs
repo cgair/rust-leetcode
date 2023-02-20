@@ -38,6 +38,28 @@ impl Solution {
 
         head
     }
+
+    // Magic of dummy_head
+    fn _delete_duplicates(head: Option<Box<ListNode<i32>>>) -> Option<Box<ListNode<i32>>> {
+        if head.is_none() { return None; }
+    
+        let mut head = head;
+        let mut dummy_head = Some(Box::new(ListNode::new(-1)));
+        let mut new_head = head.as_mut().unwrap().next.take();
+        dummy_head.as_mut().unwrap().next = head;
+        
+        let mut curr = &mut dummy_head.as_mut().unwrap().next;
+        
+        while let Some(mut node) = new_head {
+            new_head = node.next.take();
+            if node.val != curr.as_ref().unwrap().val {
+                curr.as_mut().unwrap().next = Some(node);
+                curr = &mut curr.as_mut().unwrap().next;
+            }
+        }
+    
+        dummy_head.unwrap().next
+    }
 }
 
 #[test]

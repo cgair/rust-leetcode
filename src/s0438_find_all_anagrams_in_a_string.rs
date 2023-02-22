@@ -29,31 +29,43 @@ pub struct Solution;
 
 impl Solution {
     pub fn find_anagrams(s: String, p: String) -> Vec<i32> {
-        let s_vec = s.chars().collect::<Vec<_>>();
-        let p_vec = p.chars().collect::<Vec<_>>();
-        let mut map = HashMap::new();
+        let mut needs = HashMap::new();
+        p.chars().for_each(|c| { needs.entry(c).and_modify(|e| *e +=1).or_insert(1); } );
+
+        let (mut left, mut right, mut valid) = (0usize, 0usize, 0);
         let mut window = HashMap::new();
-        p_vec.iter().map(|c| {map.insert(c, 1)} ).collect::<Vec<_>>();
+        let mut ret = vec![];
 
-        let mut result = Vec::new();
-        let (mut left, mut right) = (0usize, 0usize);
-
-        while right < s_vec.len() {
-            let c = s_vec[right];
+        while right < s.len() {
+            let r = s.chars().nth(right).unwrap();
             right += 1;
-            if !map.get(&c).is_none() {
-                window.insert(c, 1);
-            } else {
-                left += 1;
-                continue;
+            if needs.contains_key(&r) {
+                window.entry(r).and_modify(|e| *e += 1).or_insert(1);
+                if window.get(&r) == needs.get(&r) { valid += 1; }
             }
             
-            while right - left >= p_vec.len() {
-                let d = s_vec[left];
+            if right - left >= p.len() {
+                if valid == needs.len() { ret.push(left as i32); }
+                let l = s.chars().nth(left).unwrap();
                 left += 1;
+                if needs.contains_key(&l) {
+                    if window.get(&l) == needs.get(&l) {
+                        valid -= 1;
+                    }
+                    window.entry(l).and_modify(|e| *e -= 1);
+                }
             }
         }
 
-        result
+        ret
     }
+} 
+
+#[test]
+fn hashmap_api() {
+    let mut map = HashMap::new();
+    map.insert('a', 1);
+    assert_eq!(map.len(), 1);
+    map.entry('a').and_modify(|e| *e += 1 );
+    assert_eq!(map.len(), 2);
 }

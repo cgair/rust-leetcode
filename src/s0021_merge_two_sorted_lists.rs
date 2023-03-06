@@ -28,7 +28,7 @@ impl Solution {
                 break;
             }
 
-            // use extra memeroy
+            // use extra memory
             // let next = if l1.as_ref().unwrap().val < l2.as_ref().unwrap().val {
             //     let n = ListNode::new(l1.as_ref().unwrap().val);
             //     l1 = l1.unwrap().next;

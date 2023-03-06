@@ -14,6 +14,7 @@
  */
 use std::collections::VecDeque;
 
+#[derive(Debug)]
 pub struct MonotonicQueue<T> {
     inner: VecDeque<T>
 }
@@ -34,8 +35,8 @@ impl<T: Ord> MonotonicQueue<T> {
     }
 
     /// 返回当前队列中的最大值
-    pub fn max(&mut self) -> Option<T> {
-        self.inner.pop_front()
+    pub fn max(&self) -> Option<&T> {
+        self.inner.front()
     }
 
     /// 队头元素如果是 value, 删除它
@@ -63,12 +64,12 @@ mod tests {
         mq.pop(2);
         assert_eq!(
             mq.max(),
-            Some(5)
+            Some(&5)
         );
         mq.pop(5);
         assert_eq!(
             mq.max(),
-            Some(4)
+            Some(&4)
         );
     }
 }

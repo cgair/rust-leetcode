@@ -39,19 +39,35 @@ pub struct Solution;
 impl Solution {
     pub fn climb_stairs(n: i32) -> i32 {
         if n == 0 { return 0; }
-        let mut dp_table = vec![0;n as usize];
+        let mut dp_table = vec![0;n as usize + 1];
         // base case
-        dp_table[0] = 1;
-        dp_table[1] = 2;
+        dp_table[1] = 1;
+        dp_table[2] = 2;
 
-        for idx in 2..n {
+        for idx in 3..=n {
             // 首先是 dp[i - 1], 上 i-1 层楼梯, 有 dp[i - 1] 种方法, 那么再一步跳一个台阶不就是 dp[i] 啦!
             // 然后是 dp[i - 2], 上 i-2 层楼梯, 有 dp[i - 2] 种方法, 那么再一步跳两个台阶不就是 dp[i] 啦!
             // 那么 dp[i] 就是 dp[i - 1] 与 dp[i - 2] 之和!
             dp_table[idx as usize] = dp_table[idx as usize - 1] + dp_table[idx as usize - 2];
         }
 
-        dp_table[n as usize - 1]
+        dp_table[n as usize]
+    }
+
+    pub fn climb_stairs_opt(n: i32) -> i32 {
+        if n == 0 { return 0; }
+        let mut dp_table = vec![0;2];
+        // base case
+        dp_table[0] = 1;
+        dp_table[1] = 2;
+
+        for idx in 2..n {
+            let ret = dp_table[0] + dp_table[1];
+            dp_table[0] = dp_table[1];
+            dp_table[1] = ret;
+        }
+
+        dp_table[1]
     }
 }
 
@@ -60,4 +76,8 @@ fn test_70() {
     assert_eq!(Solution::climb_stairs(3), 3);
     assert_eq!(Solution::climb_stairs(4), 5);
     assert_eq!(Solution::climb_stairs(5), 8);
+    
+    assert_eq!(Solution::climb_stairs_opt(3), 3);
+    assert_eq!(Solution::climb_stairs_opt(4), 5);
+    assert_eq!(Solution::climb_stairs_opt(5), 8);
 }

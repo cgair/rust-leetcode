@@ -74,10 +74,26 @@ impl Solution {
 
         ret
     }
+    // 有了上面「备忘录」的启发, 我们可以把这个「备忘录」独立出来成为一张表, 通常叫做 DP table
+    // 在这张表上完成「自底向上」的推算: 从最底下、最简单、问题规模最小、已知结果的 f(1) 和 f(2)（base case）开始往上推, 
+    // 直到推到我们想要的答案 f(n)
+    fn fib_dp(n: i32) -> i32 {
+        if n == 0 { return 0; }
+        let mut dp = vec![0; n as usize + 1];
+        // base case
+        dp[0] = 0;
+        dp[1] = 1;
+
+        for i in 2..=n {
+            dp[i as usize] = dp[i as usize - 1] + dp[i as usize - 2]
+        }
+
+        dp[n as usize]
+    }
 }
 
 #[test]
-fn test_1013() {
+fn test_509() {
     assert_eq!(Solution::fib_ugly(2), 1);
     assert_eq!(Solution::fib_ugly(3), 2);
     assert_eq!(Solution::fib_ugly(4), 3);
@@ -85,4 +101,8 @@ fn test_1013() {
     assert_eq!(Solution::fib(2), 1);
     assert_eq!(Solution::fib(3), 2);
     assert_eq!(Solution::fib(4), 3);
+
+    assert_eq!(Solution::fib_dp(2), 1);
+    assert_eq!(Solution::fib_dp(3), 2);
+    assert_eq!(Solution::fib_dp(4), 3);
 }

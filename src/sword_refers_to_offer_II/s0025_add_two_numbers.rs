@@ -1,25 +1,26 @@
 /**
- * [25] Add Two Numbers
+ * [剑指 Offer II 025] 链表中的两数相加
  *
- * You are given two non-empty linked lists representing two non-negative
- * integers. The highest bit of the number is at the beginning of the 
- * linked list and each of their nodes contain a single digit. 
- * Add the two numbers and return it as a linked list.
- *
- * You may assume the two numbers do not contain any leading zero, except the
- * number 0 itself.
- *
- * Example:
+ * 给定两个非空链表 l1 和 l2 来代表两个非负整数. 数字最高位位于链表开始位置.
+ * 它们的每个节点只存储一位数字, 将这两数相加会返回一个新的链表.
+ * 可以假设除了数字 0 之外, 这两个数字都不会以零开头.
+ * 
+ * 
+ * 示例1:
  *
  *
- * Input: (7 -> 2 -> 4 -> 3) + (5 -> 6 -> 4)
- * Output: 7 -> 8 -> 0 -> 7
- * Explanation: 7243 + 564 = 7807.
+ * 输入: l1 = [7,2,4,3], l2 = [5,6,4]
+ * 输出: [7,8,0,7]
+ * 
+ * 
+ * 示例2:
+ * 输入: l1 = [2,4,3], l2 = [5,6,4]
+ * 输出: [8,0,7]
  *
  */
 // problem: https://leetcode.cn/problems/lMSNwu/
 use crate::{ListNode, to_list};
- pub struct Solution;
+pub struct Solution;
 
 impl Solution {
     pub fn add_two_numbers(l1: Option<Box<ListNode<i32>>>, l2: Option<Box<ListNode<i32>>>) -> Option<Box<ListNode<i32>>> {

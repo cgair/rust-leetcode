@@ -1,5 +1,6 @@
 // 链表双指针
 mod s0025_add_two_numbers;
+mod s0078_merge_k_sorted_lists;
 
 // 滑动窗口
 mod s0048_longest_substring_without_repeating_characters;

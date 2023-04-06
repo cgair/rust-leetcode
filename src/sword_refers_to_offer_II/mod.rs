@@ -11,5 +11,8 @@ type TreeNode = crate::TreeNode<i32>;
 /* Simple */
 mod s055_maximum_depth_of_binary_tree;
 
+/* Medium */
+mod s0007_rebuild_binary_tree;  // aka s0105_construct_binary_tree_from_preorder_and_inorder_traversal.rs
+
 // 数学算法
 mod s0015_number_of_1s_in_binary;

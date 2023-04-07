@@ -9,10 +9,14 @@ mod s0017_shortest_string_containing_all_characters;    // aka s0076_minimum_win
 // 二叉树
 type TreeNode = crate::TreeNode<i32>;
 /* Simple */
-mod s055_maximum_depth_of_binary_tree;
+mod s0055_maximum_depth_of_binary_tree;
 
 /* Medium */
 mod s0007_rebuild_binary_tree;  // aka s0105_construct_binary_tree_from_preorder_and_inorder_traversal.rs
+
+//// 暴力搜索算法
+// 回溯算法
+mod s0079_all_subsets;  // aka s0078_subsets.rs
 
 // 数学算法
 mod s0015_number_of_1s_in_binary;

@@ -35,10 +35,14 @@ impl Solution {
         if k > nums.len() as i32 { return false; }
         let sum = nums.iter().sum::<i32>();
         if sum % k != 0 { return false; } // k | sum
+        let mut nums = nums;
+        // <https://stackoverflow.com/a/60916195/19850482>
+        use std::cmp::Reverse;
+        nums.sort_by_key(|&w| Reverse(w));
 
         // k 个桶 (集合), 记录每个桶装的数字之和
-        // let mut bucket = vec![0;k as usize];
-        let mut bucket = Vec::with_capacity(k as usize);
+        let mut bucket = vec![0;k as usize];
+        // let mut bucket = Vec::with_capacity(k as usize);
         // 理论上每个桶 (集合) 中数字的和
         let target = sum / k;
 
@@ -55,6 +59,9 @@ impl Solution {
         }
 
         for b in 0..bucket.len() {
+        // 代码 (line 65): 如果我们让尽可能多的情况命中剪枝的那个 if 分支, 就可以减少递归调用的次数, 一定程度上减少时间复杂度.
+        // 如何尽可能多的命中这个 if 分支呢? 要知道我们的 index 参数是从 0 开始递增的, 也就是递归地从 0 开始遍历 nums 数组.
+        // 如果我们提前对 nums 数组排序, 把大的数字排在前面, 那么大的数字会先被分配到 bucket 中, 对于之后的数字, bucket[i] + nums[index] 会更大, 更容易触发剪枝的 if 条件.
             if bucket[b] + choices[start] > target { continue; }
             // 将 nums[idx] 装入 bucket[b]
             bucket[b] += choices[start];

@@ -90,7 +90,8 @@ impl Codec {
             match ch {
                 '#' => { return None; },
                 _ => {
-                    let val = ch as i32 - 0x30;
+                    // let val = ch as i32 - 0x30;
+                    let val = ch.to_string().parse::<i32>().unwrap();
                     root = Some(Rc::new(RefCell::new(TreeNode::new(val))));
                     root.as_mut().unwrap().borrow_mut().left = self.construct_tree(s);
                     root.as_mut().unwrap().borrow_mut().right = self.construct_tree(s);
@@ -123,6 +124,14 @@ fn test_swordII_48() {
     assert_eq!(
         de,
         tree![1,2,3,null,null,4,5]
+    );
+
+    let se = obj.serialize(tree![4,-7,-3,null,null,-9,-3,9,-7,-4,null,6,null,-6,-6,null,null,0,6,5,null,9,null,null,-1,-4,null,null,null,-2]);
+    println!("{:?}", se);
+    let de = obj.deserialize(se);
+    assert_eq!(
+        de,
+        tree![4,-7,-3,null,null,-9,-3,9,-7,-4,null,6,null,-6,-6,null,null,0,6,5,null,9,null,null,-1,-4,null,null,null,-2]
     );
 }
 

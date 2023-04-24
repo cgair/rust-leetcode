@@ -1,3 +1,5 @@
+// 二分查找
+mod s0053_missing_digits_from_zero_to_n_minus_one_ii;
 // 链表双指针
 mod s0025_add_two_numbers;
 mod s0078_merge_k_sorted_lists;

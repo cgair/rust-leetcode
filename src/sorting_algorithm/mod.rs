@@ -1,7 +1,11 @@
-mod bubble;
 mod selection;
 
+
+mod bubble;
 mod quick;
+
+mod merge_sort;
+
 
 /*  
 内排序: 所有排序操作都在内存中完成, 适用于数据规模不是特别大的情况;

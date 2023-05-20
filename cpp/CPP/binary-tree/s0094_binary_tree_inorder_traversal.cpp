@@ -1,5 +1,6 @@
-#include "data_structure.h"
+#include "../data_structure.h"
 #include <vector>
+// #include <bits/stdc++.h>     // 一次行包含所有C++头文件
 
 using namespace std;
 

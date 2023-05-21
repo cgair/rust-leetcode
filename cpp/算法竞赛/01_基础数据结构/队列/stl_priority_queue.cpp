@@ -48,6 +48,12 @@ int main()
     }
     std::cout << std::endl;
 
+    // Emplace a new element into the priority queue container
+    // It is similar to push operation. 
+    // The difference is that emplace() operation 
+    // saves unnecessary copy of the object.
+    pq.emplace(100);
+
     std::cout << "How to create a min heap for the priority queue?" << std::endl;
     minHeap();
 

@@ -1,6 +1,7 @@
 #ifndef __LISTNODE_H__
 #define __LISTNODE_H__
 #include <vector>
+#include <iostream>
 
 struct ListNode
 {
@@ -23,6 +24,14 @@ ListNode* construct_linkedlist(const std::vector<int>& value) {
     }
 
     return head;
+}
+
+void print_list(ListNode* head) {
+    while (head != nullptr) {
+        std::cout << head->val << " -> ";
+        head = head->next;
+    }
+    std::cout << "NULL" << std::endl;
 }
 
 

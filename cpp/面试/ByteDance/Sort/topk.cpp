@@ -43,7 +43,7 @@ public:
         data = (int*)malloc(sizeof(int) * capacity);
         data[0] = 0;
     }
-    ~MinHeap() { delete data; }
+    ~MinHeap() { free(data); }
 
     void push(int val);
     void pop();
